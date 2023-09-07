@@ -25,6 +25,7 @@ mongoose
 app.get('/healthz', (req, res) => {
    res.send('Hi Fooooooooo!!!!!')
 })
+app.post('/users', UserController.register)
 
 const port = process.env.PORT || 4000
 const server = app.listen(port, () => {
