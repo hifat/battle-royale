@@ -2,8 +2,9 @@ const express = require('express')
 const socket = require('socket.io')
 const cors = require('cors')
 const mongoose = require('mongoose')
-const Entity = require('./model/Entity')
 require('dotenv').config()
+
+const UserController = require('./controller/user')
 
 const app = express()
 app.use(express.json())
@@ -35,10 +36,10 @@ io.on('connection', (socket) => {
    console.log('made socket connection', socket.id)
 
    socket.on('joined', function (data) {
-      socket.broadcast.emit('joined', data)
+      UserController.joined(io, socket, data)
    })
 
    socket.on('action', function (data) {
-      io.sockets.emit('action', data)
+      socket.broadcast.emit('action', data)
    })
 })
