@@ -21,11 +21,10 @@ mongoose
    .catch((err) => {
       console.log(err)
    })
-
-app.get('/healthz', (req, res) => {
+app.get('/api/healthz', (req, res) => {
    res.send('Hi Fooooooooo!!!!!')
 })
-app.post('/users', UserController.register)
+app.post('/api/users', UserController.register)
 
 const port = process.env.PORT || 4000
 const server = app.listen(port, () => {
